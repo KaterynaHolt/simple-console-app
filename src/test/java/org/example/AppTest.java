@@ -1,15 +1,13 @@
 package org.example;
 
-import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Unit test for simple App.
@@ -39,16 +37,15 @@ public class AppTest
         assertTrue( true );
     }
 
+    /**
+     * Test sorting method - sortedList
+     */
     public void testList(){
         String[] data = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
-        String[] expected = {"eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two"};
-        Object[] actual = App.sorted_list(data);
+        String[] ex = {"eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two"};
+        ArrayList<String> expected = (ArrayList<String>) Arrays.stream(ex).collect(Collectors.toList());
+        ArrayList<String> actual = App.sortedList(data);
 
-        Iterator<String> ex = Arrays.stream(expected).iterator();
-        Iterator<Object> ac = Arrays.stream(actual).iterator();
-        while(ex.hasNext() && ac.hasNext()){
-            assertEquals(ex.next(), ac.next());
-        }
-        assert !ex.hasNext() && !ac.hasNext();
+        Assertions.assertLinesMatch(expected, actual);
     }
 }
