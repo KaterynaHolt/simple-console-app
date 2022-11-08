@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -40,12 +41,14 @@ public class AppTest
     /**
      * Test sorting method - sortedList
      */
-    public void testList(){
+    public void test_should_sort_passed_list(){
+        //GIVEN
         String[] data = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
-        String[] ex = {"eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two"};
-        ArrayList<String> expected = (ArrayList<String>) Arrays.stream(ex).collect(Collectors.toList());
-        ArrayList<String> actual = App.sortedList(data);
-
+        List<String> expected = new ArrayList<>(List
+                .of("eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two"));
+        //WHEN
+        List<String> actual = App.sortList(data);
+        //THEN
         Assertions.assertLinesMatch(expected, actual);
     }
 }
