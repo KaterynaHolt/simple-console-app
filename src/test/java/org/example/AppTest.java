@@ -44,8 +44,8 @@ public class AppTest
     public void test_should_sort_passed_list(){
         //GIVEN
         String[] data = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
-        List<String> expected = new ArrayList<>(List
-                .of("eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two"));
+        List<String> expected = List
+                .of("eight", "five", "four", "nine", "one", "seven", "six", "ten", "three", "two");
         //WHEN
         List<String> actual = App.sortList(data);
         //THEN
