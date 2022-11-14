@@ -52,29 +52,29 @@ public class AppTest
     }
 
     /**
-     * Test throwing IllegalArgumentException in method sortedList
+     * Test should throw IllegalArgumentException if no parameters have been passed to the method.
      */
     public void test_no_parameter_exception(){
         //GIVEN
         String[] data = {};
         //WHEN
         IllegalArgumentException throwable = Assertions.assertThrows(IllegalArgumentException
-                .class, ()-> App.sortList(data));
+                .class, ()-> App.validation(data));
         //THEN
         Assertions.assertEquals("No parameter passed!", throwable.getMessage());
     }
 
     /**
-     * Test message that method sortedList was passed only one parameter
+     * Test should throw IllegalArgumentException if only one parameter have been passed to the method.
      */
     public void test_one_element_exception(){
         //GIVEN
         String[] data = {"one"};
-        List<String> expected = List
-                .of("You passed only one parameter, it must be two or more!");
         //WHEN
-        List<String> actual = App.sortList(data);
+        IllegalArgumentException throwable = Assertions.assertThrows(IllegalArgumentException
+                .class, ()-> App.validation(data));
         //THEN
-        Assertions.assertLinesMatch(expected, actual);
+        Assertions.assertEquals("You passed only one parameter, it must be two or more!",
+                throwable.getMessage());
     }
 }
